@@ -10,4 +10,5 @@ public class NoteTakerApplication {
 		SpringApplication.run(NoteTakerApplication.class, args);
 	}
 
+
 }
