@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 @Table(name="Notes")
 public class Notes extends AbstractClass {
 
+
     @ManyToOne
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
@@ -36,5 +37,21 @@ public class Notes extends AbstractClass {
 
     public Timestamp getCreatedAt() {
         return createdAt;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }

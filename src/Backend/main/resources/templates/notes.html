@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+
+<body>
+    <ul th:each="item : ${information}">
+        <li th:text="${item.title}"></li>
+    </ul>
+    <form>
+        <label for="title">Title:</label>
+        <input id="title" name="title" type="text">
+        <br>
+
+        <label for="note">Notes:</label>
+        <textarea id="note" name="note" row="10" cols="40"></textarea>
+        <br>
+
+
+
+    </form>
+</body>
+
+</html>

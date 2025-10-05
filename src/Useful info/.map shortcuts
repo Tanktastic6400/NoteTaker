@@ -1,0 +1,28 @@
+List<Note> notes = ...;
+Stream<Note> noteStream = notes.stream();
+
+List<String> titles = notes.stream()
+    .map(note -> note.getTitle())      // transform Note → title String
+    .collect(Collectors.toList());
+
+
+List<Note> longNotes = notes.stream()
+    .filter(note -> note.getContent().length() > 50)
+    .collect(Collectors.toList());
+
+
+List<Note> sortedNotes = notes.stream()
+    .sorted(Comparator.comparing(Note::getCreatedAt))
+    .collect(Collectors.toList());
+
+
+List<NoteDTO> dtoList = notes.stream()
+    .map(n -> new NoteDTO(n.getTitle(), n.getContent(), n.getCreatedAt()))
+    .collect(Collectors.toList());
+
+
+notes.stream().forEach(n -> System.out.println(n.getTitle()));
+
+long count = notes.stream().filter(n -> n.getTitle().contains("test")).count();
+
+boolean hasTest = notes.stream().anyMatch(n -> n.getTitle().contains("test"));
