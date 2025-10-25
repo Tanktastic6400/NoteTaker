@@ -1,0 +1,10 @@
+.loginText{
+    display: grid;
+    row-gap: 10px;
+    column-gap: 10px;
+    grid-template-columns: auto auto;
+}
+
+.submitButton{
+    margin: 10px;
+}

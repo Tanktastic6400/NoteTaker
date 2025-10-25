@@ -2,29 +2,21 @@ package com.Tanktastic.NoteTaker.DTO;
 
 import java.time.LocalDateTime;
 
-public class NotesDTO {
-    Long id;
+public class NotesSummaryDTO {
+   private Long id;
     private String title;
-    private String content;
+
     private LocalDateTime createdAt;
 
-    public NotesDTO(Long id, String title, String content,LocalDateTime createdAt){
+    public NotesSummaryDTO(Long id, String title,LocalDateTime createdAt){
         this.id = id;
         this.title = title;
-        this.content= content;
+
         this.createdAt = createdAt;
     }
 
     public String getTitle() {
         return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 
     public Long getId() {
@@ -39,11 +31,11 @@ public class NotesDTO {
         this.title = title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
