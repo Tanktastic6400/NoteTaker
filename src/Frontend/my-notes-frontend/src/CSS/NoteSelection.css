@@ -1,0 +1,15 @@
+.buttons {
+    margin-left: 2px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: rgb(105, 105, 105);
+}
+
+.noteContainer {
+    opacity: 0;
+    transition: 1 ease-in-out .5;
+}
+
+.noteContainer:hover {
+    opacity: 1;
+}
