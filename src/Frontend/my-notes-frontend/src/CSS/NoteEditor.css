@@ -1,5 +1,5 @@
 *{
-    color: #9FB6E0
+    color: rgb(159, 182, 224)
     
 }
 
@@ -12,6 +12,7 @@ body{
 .contentArea{
     width: 75vw;
     height: 65vh;
+    align-items: center;
     
 }
 

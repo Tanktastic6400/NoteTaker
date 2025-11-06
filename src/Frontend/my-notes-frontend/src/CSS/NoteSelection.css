@@ -1,15 +1,59 @@
 .buttons {
     margin-left: 2px;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    
+    background-color: rgb(150,150,150);
+    transition: 12 ease-in-out 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: lavender
+    
+}
+
+.buttons:hover {
+    background-color: rgba(159, 182, 224, 0.473);
+    border-collapse: collapse;
+    cursor: pointer;
+}
+
+.note-menu{
+    opacity: 0;
+    transition: 1 ease-in-out .5;
+    /* outline: none; */
+    border: none;
+}
+
+.noteContainer:hover .note-menu {
+    opacity: 1;
+}
+
+.noteContainer.selected{
     background-color: rgb(105, 105, 105);
 }
 
-.noteContainer {
-    opacity: 0;
-    transition: 1 ease-in-out .5;
+table{
+    border-collapse: collapse;
+    width: 100%;
 }
 
-.noteContainer:hover {
-    opacity: 1;
+.noteTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    
+
+    /* align-self: center; */
+
+}
+
+th{
+    font-size: 25px;
+}
+td{
+    border-bottom: 1px solid rgb(105, 105, 105);
 }
