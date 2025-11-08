@@ -15,8 +15,8 @@ public interface NoteRepository extends JpaRepository<Notes, Long> {
 
     List<Notes> findNotesByUserId(Long user_id);
 
-    @Query("SELECT new com.Tanktastic.NoteTaker.DTO.NotesSummaryDTO(n.id, n.title, n.createdAt)"+
-            "FROM notes n WHERE n.user.id= :userId")
+    @Query("SELECT new com.Tanktastic.NoteTaker.DTO.NotesSummaryDTO(n.id, n.title, n.createdAt) "+
+            "FROM Notes n WHERE n.user.id= :userId")
     List<NotesSummaryDTO> findNotesSummaryByUserId(@Param("userId") Long userId);
 
 

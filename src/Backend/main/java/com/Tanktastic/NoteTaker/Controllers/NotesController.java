@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,11 +32,11 @@ public class NotesController {
     @GetMapping
     public List<NotesSummaryDTO> getAllNotes() {
 
-        List<Notes> notes = noteRepository.findNotesByUserId(1L);
+        List<Notes> notes = noteRepository.findAll();
 
 
         return notes.stream()
-                .map(n -> new NotesSummaryDTO(n.getId(), n.getTitle(), n.getCreatedAt().toLocalDateTime()))
+                .map(n -> new NotesSummaryDTO(n.getId(), n.getTitle(), n.getCreatedAt()))
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +48,7 @@ public class NotesController {
 
         if (optionalNote.isPresent()) {
             Notes tempNote = optionalNote.get();
-            NotesDTO note = new NotesDTO(tempNote.getId(), tempNote.getTitle(), tempNote.getContent(), tempNote.getCreatedAt().toLocalDateTime());
+            NotesDTO note = new NotesDTO(tempNote.getId(), tempNote.getTitle(), tempNote.getContent(), tempNote.getCreatedAt());
 
             return ResponseEntity.ok(note);
         } else {
@@ -66,7 +67,7 @@ public class NotesController {
         tempNote.setTitle(title);
         tempNote.setContent(note);
         tempNote.setUser(tempUser);
-        tempNote.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+
 
 
         noteRepository.save(tempNote);
@@ -82,8 +83,6 @@ public class NotesController {
         if (optionalNotes.isPresent()) {
             Notes tempNote = optionalNotes.get();
             tempNote.setTitle(title);
-            tempNote.setContent(note);
-            tempNote.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
             noteRepository.save(tempNote);
 
             return ResponseEntity.ok(tempNote);
@@ -106,7 +105,7 @@ public class NotesController {
 
             noteRepository.delete(tempNote);
 
-            return ResponseEntity.;
+            return ResponseEntity.noContent().build();
 
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

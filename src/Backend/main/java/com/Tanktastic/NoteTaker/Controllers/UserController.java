@@ -1,6 +1,7 @@
 package com.Tanktastic.NoteTaker.Controllers;
 
 
+import com.Tanktastic.NoteTaker.Entities.User;
 import com.Tanktastic.NoteTaker.Repositories.NoteRepository;
 import com.Tanktastic.NoteTaker.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping()
-    public String grabUser(@RequestParam String username, @RequestParam String password){
-        userRepository.findUserByUsernameAndPassword(username, password);
+    public User grabUser(@RequestParam String username, @RequestParam String password){
+        return userRepository.findUserByUsernameAndPassword(username, password);
     }
 
     @PostMapping("signup")
-    public String signUpUser(@RequestParam String username, @RequestParam String email, @RequestParam String password){
+    public void signUpUser(@RequestParam String username, @RequestParam String email, @RequestParam String password){
 
     }
 

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "../CSS/NoteSelection.css";
+import axios from 'axios';
 
 function NoteSelection({ username, userID }) {
 
+    const [Notes, setNotes] = useState([]);
     const [selectedNoteId, setSelectedNoteId] = useState(null);
 
-    const testObject = [
+    const testObject2 = [
   { id: "1", title: "why do I suck", createdAt: "2025-02-14T09:45:32" },
   { id: "2", title: "The benefits of perinial sun basking", createdAt: "2025-06-03T18:22:10" },
   { id: "3", title: "How can I be a great lover", createdAt: "2025-10-27T23:07:58" },
@@ -49,6 +51,19 @@ function NoteSelection({ username, userID }) {
   { id: "2000", title: "Plans for world domination (probably)", createdAt: "2025-06-18T23:23:23" }
 ];
 
+let testObject;
+
+
+useEffect(() =>{
+
+
+    axios.get('http://localhost:8080/notes')
+    .then(response => { setNotes(response.data);
+    
+    }).catch(error => {
+        console.error('There was an error!', error);
+    });
+},[]);
 
 
 
@@ -59,7 +74,7 @@ function NoteSelection({ username, userID }) {
     };
 
     function handleDoubleClick() {
-
+        
     }
     function handleSingleClick(id) {
         setSelectedNoteId(id);
@@ -78,7 +93,7 @@ function NoteSelection({ username, userID }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {testObject.map((note) =>  
+                    {Notes.map((note) =>  
                         <tr onClick={() => setSelectedNoteId(note.id)} onDoubleClick={() => handleDoubleClick()} key= {note.id} className={`noteContainer ${note.id === selectedNoteId ? "selected" : ""}`}>
                             <td>{note.title}</td>
                             

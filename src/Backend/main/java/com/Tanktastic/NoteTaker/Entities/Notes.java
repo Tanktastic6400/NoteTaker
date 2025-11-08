@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Notes")
@@ -24,11 +25,22 @@ public class Notes extends AbstractClass {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private java.sql.Timestamp createdAt;
+    @Column(name = "created_at", nullable = true)
+    private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    private java.sql.Timestamp updatedAt;
+    @Column(nullable = true)
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 
 
     public Long getId() {
@@ -51,7 +63,7 @@ public class Notes extends AbstractClass {
         return content;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
@@ -67,15 +79,9 @@ public class Notes extends AbstractClass {
         this.content = content;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
 
-    public Timestamp getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }
