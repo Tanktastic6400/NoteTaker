@@ -1,0 +1,16 @@
+.dropdown-table td{
+    
+    border-top: 1px solid rgb(105,105,105);
+    border-bottom: 1px solid rgb(105,105,105);
+}
+
+.menu-options,
+.noteContainer:active .note-menu{
+    background-color: rgb(75, 75, 75);
+   
+}
+.menu-options:hover{
+    color: rgb(120,10,120);
+    background-color: rgb(255,255,255);
+
+}

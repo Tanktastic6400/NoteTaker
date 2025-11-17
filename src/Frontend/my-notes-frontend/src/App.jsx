@@ -3,7 +3,10 @@ import Login from "./components/Login";
 import NoteSelection from "./components/NoteSelection";
 // import {BrowserRouter } from "react-router";
 import NoteEditor from "./components/NoteEditor";
+import DropdownMenu from "./components/DropdownMenu";
 import './App.css';
+import NoteSidebar from './components/NoteSidebar';
+import NoteWorkspace from './components/NoteWorkspace';
 
 function App() {
 
@@ -12,7 +15,10 @@ function App() {
       <div className="App">
       {/* <Login/> */}
       {/* <NoteEditor/> */}
-      <NoteSelection/>
+      {/* <NoteSelection/> */}
+      {/* <NoteSidebar/> */}
+      <NoteWorkspace />
+      {/* <DropdownMenu/> */}
      
       </div>
     </>

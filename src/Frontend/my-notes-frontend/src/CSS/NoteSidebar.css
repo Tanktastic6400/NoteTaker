@@ -1,0 +1,32 @@
+.icons{
+    width:20px;
+    height: 20px;
+}
+
+.icon-button{
+
+    background-color: rgb(150,150,150);
+    margin-left: 10px;
+    padding-left:15px;
+    padding-right:15px
+
+
+
+}
+.icon-button:hover{
+    
+    border:none;
+}
+.icon-row td{
+    border-bottom: 0;
+}
+.iconTable tr{
+    border: 3px groove rgb(130,130,130);
+    background-color: rgb(85,85,85);
+    border-collapse: collapse;
+    
+}
+.side-bar{
+    height: 100vh;
+    width: 15vw;
+}
