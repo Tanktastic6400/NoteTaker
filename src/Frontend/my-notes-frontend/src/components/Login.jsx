@@ -1,16 +1,19 @@
 import React from "react";
 import "../CSS/Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
-    function handleSubmit(event){
+    const navigate = useNavigate();
+
+    function handleSubmit(event) {
         event.preventDefault();
 
-        console.log("sign in!!!");
+        navigate("/select");
 
     };
 
-    function handleSignUp(event){
+    function handleSignUp(event) {
         event.preventDefault();
 
         console.log("sign up!!>???");
@@ -22,17 +25,18 @@ function Login() {
 
     return (
         <div className="loginForm">
-            <div className="loginText">
-                <label htmlFor="usernameBox">Username:</label>
-                <input type="text" id="usernameBox" className="usernameBox" />
-                <label htmlFor="passwordBox">Password: </label>
-                <input type="text" id="passwordBox" className="passwordBox" />
+            <div className="loginContainer">
+                <div className="loginText">
+                    <label htmlFor="usernameBox" className="fieldLables">Username:</label>
+                    <input type="text" id="usernameBox" className="textFields" autoFocus="true"/>
+                    <label htmlFor="passwordBox" className="fieldLables">Password: </label>
+                    <input type="password" id="passwordBox" className="textFields"  />
 
+                </div>
+                <button key="submitButton" className="formButtons" onClick={handleSubmit}>Sign In</button>
+                <button key="submitButton" className="formButtons" onClick={handleSignUp}>Sign Up</button>
             </div>
-                <button className="signUpButton" onClick={handleSubmit}>Sign In</button>
-                <button className="submitButton" onClick= {handleSignUp}>Sign Up</button>
         </div>
-
     )
 
 

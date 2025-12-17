@@ -19,7 +19,10 @@ public class NoteTakerApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 WebMvcConfigurer.super.addCorsMappings(registry);{
-                    registry.addMapping("/**").allowedOrigins("http://localhost:5173");
+                    registry.addMapping("/**")
+                            .allowedOrigins("http://localhost:5173")
+                            .allowedMethods("GET", "POST", "PUT", "DELETE")
+                            .allowedHeaders("*");
 
                 }
             }

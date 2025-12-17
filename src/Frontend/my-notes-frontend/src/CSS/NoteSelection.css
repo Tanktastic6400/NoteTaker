@@ -10,6 +10,9 @@
     color: lavender
     
 }
+.create-button{
+    margin-left: 10vw;
+}
 
 .buttons:hover {
     background-color: rgba(159, 182, 224, 0.473);
@@ -44,7 +47,7 @@ table{
     align-items: center;
     flex-direction: column;
     width: 80vw;
-    margin-top: 10vh;
+    margin-top: 1vh;
     margin-left: 10vw;
     
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -59,58 +60,50 @@ public class NotesController {
 
 
     //createNote
-    @PostMapping
-    public void createNote(@RequestParam String title, @RequestParam String note) {
-        User tempUser = userRepository.findById(1L).get();
+    @PostMapping("/saveNote")
+    public ResponseEntity<Notes> saveNote(@RequestParam Long userId, @RequestParam String title, @RequestParam String note, @RequestParam Long noteId) {
 
+        User tempUser = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         Notes tempNote = new Notes();
+        if(noteId != 0){
+            tempNote.setId(noteId);
+        }
         tempNote.setTitle(title);
         tempNote.setContent(note);
         tempNote.setUser(tempUser);
 
-
-
-        noteRepository.save(tempNote);
+        Notes savedNote = noteRepository.save(tempNote);
+         return ResponseEntity.status(HttpStatus.CREATED).body(savedNote);
 
     }
 
 
-    //updateNote()
-    @PutMapping("/{id}")
-    public ResponseEntity<Notes> updateNote(@PathVariable Long id, @RequestParam String title, @RequestParam String note) {
-        Optional<Notes> optionalNotes = noteRepository.findById(id);
+        //updateNote()
+        @PutMapping("/updateNote/{id}")
+        public ResponseEntity<Notes> updateNote (@RequestParam Long userId,@PathVariable Long id, @RequestParam String title, @RequestParam String
+        content){
+            User tempUser = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+            Notes tempNote = noteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
 
-        if (optionalNotes.isPresent()) {
-            Notes tempNote = optionalNotes.get();
             tempNote.setTitle(title);
-            noteRepository.save(tempNote);
+            tempNote.setContent(content);
+            tempNote.setUser(tempUser);
 
-            return ResponseEntity.ok(tempNote);
 
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            Notes savedNote = noteRepository.save(tempNote);
+            return ResponseEntity.ok(savedNote);
+
+
         }
 
+        //TODO
+        //deleteNote
+        @DeleteMapping("/deleteNote/{id}")
+        public ResponseEntity<Notes> deleteNote (@PathVariable Long id){
 
-    }
-
-    //TODO
-    //deleteNote
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Notes> deleteNote(@PathVariable Long id) {
-
-        Optional<Notes> optionalNotes = noteRepository.findById(id);
-        if (optionalNotes.isPresent()) {
-            Notes tempNote = optionalNotes.get();
-
+            Notes tempNote = noteRepository.findById(id).orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
             noteRepository.delete(tempNote);
-
             return ResponseEntity.noContent().build();
-
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
         }
-    }
 
-}//end of class
+    }//end of class

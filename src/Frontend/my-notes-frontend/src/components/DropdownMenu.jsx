@@ -5,20 +5,23 @@ import "../CSS/DropdownMenu.css";
 
 
 
-function DropdownMenu({ style, options, onSelect }) {
-    const [open, setOpen] = useState(false);
+function DropdownMenu({ style, options, onSelect, noteId }) {
+
 
     const menuOptions = ["Delete", "Edit", "Move to...", "New"];
-    function handleClick(str){
+    function handleClick(str) {
         console.log(str);
     }
     return ReactDOM.createPortal(
         <div className="dropdown-container" style={style}>
             <table className="dropdown-table">
                 <tbody>
-                    {menuOptions.map((option,index) =>
-                    <tr onClick={() => handleClick(menuOptions[index])} className="menu-options">{option}</tr>)}
-                
+
+                    {menuOptions.map((option, index) =>
+                        <tr>
+                            <td onClick={() => handleClick(menuOptions[index])} key={option} className="menu-options">{option}</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>,

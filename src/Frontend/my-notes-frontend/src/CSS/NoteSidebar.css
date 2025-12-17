@@ -27,6 +27,8 @@
     
 }
 .side-bar{
-    height: 100vh;
+    height: 99.5vh;
     width: 15vw;
+    border: 4px  rgb(130,130,130);
+    
 }
